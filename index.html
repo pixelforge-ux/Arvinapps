@@ -7,10 +7,10 @@
     <script type="importmap">
         {
             "imports": {
-                "lucide-react": "https://esm.sh/lucide-react@0.292.0",
-                "react": "https://esm.sh/react@18.2.0",
-                "react-dom": "https://esm.sh/react-dom@18.2.0",
-                "react-dom/client": "https://esm.sh/react-dom@18.2.0/client",
+                "lucide-react": "https://esm.sh/lucide-react@0.454.0?external=react",
+                "react": "https://esm.sh/react@18.3.1",
+                "react-dom": "https://esm.sh/react-dom@18.3.1",
+                "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
                 "htm": "https://esm.sh/htm@3.1.1"
             }
         }
@@ -376,7 +376,7 @@
         import React, { useState, useEffect, useRef } from 'react';
         import { createRoot } from 'react-dom/client';
         import htm from 'htm';
-        import { ChevronLeft, Play, LayoutGrid, Gamepad2, Star, Search } from 'lucide-react';
+        import * as Lucide from 'lucide-react';
 
         const html = htm.bind(React.createElement);
 
@@ -540,7 +540,7 @@
                     <div className="header-top">
                         <h1>بازی و برنامه</h1>
                         <div className="search-container">
-                            <${Search} className="search-icon" size=${18} />
+                            <${Lucide.Search} className="search-icon" size=${18} />
                             <input 
                                 type="text" 
                                 className="search-input" 
@@ -569,7 +569,7 @@
                     >
                         ${filteredGames.length === 0 ? html`
                             <div className="no-results">
-                                <${Search} size=${48} opacity=${0.3} />
+                                <${Lucide.Search} size=${48} opacity=${0.3} />
                                 <div>موردی یافت نشد</div>
                             </div>
                         ` : infiniteGames.map((game, index) => {
@@ -602,7 +602,7 @@
                                                         ${[1, 2, 3, 4, 5].map(star => {
                                                             const isFilled = (userRatings[game.id] || 0) >= star;
                                                             return html`
-                                                                <${Star} 
+                                                                <${Lucide.Star} 
                                                                     key=${star}
                                                                     size=${28} 
                                                                     className="star-icon"
@@ -620,7 +620,7 @@
                                                 </div>
 
                                                 <button className="play-btn" onClick=${() => openGame(game)}>
-                                                    <${Play} size=${20} fill="currentColor" />
+                                                    <${Lucide.Play} size=${20} fill="currentColor" />
                                                     <span>شروع بازی</span>
                                                 </button>
                                             </div>
@@ -634,12 +634,12 @@
                     <div className=${`webview-container ${isViewOpen ? 'active' : ''}`}>
                         <div className="webview-header">
                             <div style=${{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                                <${Gamepad2} size=${24} color="#38bdf8" />
+                                <${Lucide.Gamepad2} size=${24} color="#38bdf8" />
                                 <span style=${{ fontWeight: 'bold', fontSize: '1.1rem' }}>${activeGame?.name}</span>
                             </div>
                             <button className="back-button" onClick=${closeGame}>
                                 <span>بازگشت</span>
-                                <${ChevronLeft} size=${20} />
+                                <${Lucide.ChevronLeft} size=${20} />
                             </button>
                         </div>
                         ${activeGame && html`
